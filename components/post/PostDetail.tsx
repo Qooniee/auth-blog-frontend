@@ -90,7 +90,6 @@ const PostDetail = ({ post, user }: PostDetailProps) => {
           </div>
         </div>
       </div>
-
       <div className="leading-relaxed break-words whitespace-pre-wrap">
         {post.content}
       </div>
