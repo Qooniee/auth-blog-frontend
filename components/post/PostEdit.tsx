@@ -31,7 +31,10 @@ const schema = z.object({
   title: z.string().min(3, { message: "3文字以上入力する必要があります" }),
   content: z.string().min(3, { message: "3文字以上入力する必要があります" }),
   author: z.string().min(1, {message: "著者名を入力してください"}),
-  isbn: z.string().min(10, { message: "ISBNを入力してください" })
+  isbn: z.string()
+  .refine(val => val.length === 10 || val.length === 13, {
+    message: "ISBNは10桁または13桁である必要があります"
+  })
 })
 
 // 入力データの型を定義
@@ -112,6 +115,11 @@ const PostEdit = ({ user, post }: PostEditProps) => {
   }
   
   const onFetchBookData = async (isbn: string) => {
+    // ISBNが10桁または13桁であるかチェック
+    if (isbn.length !== 10 && isbn.length !== 13) {
+      toast.error("ISBNは10桁または13桁である必要があります")
+      return
+    }
     try {
       const data = await fetchBookInfo(isbn)
       setBookData(data)

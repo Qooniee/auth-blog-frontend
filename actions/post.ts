@@ -38,6 +38,7 @@ export interface PostType {
   image: string | undefined
   isbn: string,
   title: string
+  author: string
   content: string
   updated_at: string
   created_at: string
