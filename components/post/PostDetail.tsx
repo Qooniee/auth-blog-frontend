@@ -66,6 +66,7 @@ const PostDetail = ({ post, user }: PostDetailProps) => {
       </div>
 
       <div className="font-bold text-2xl break-words">{post.title}</div>
+      <div className="font-semibold text-md">{post.author + " 著"}</div>
 
       <div>
         <div className="flex items-center space-x-2">
@@ -93,7 +94,6 @@ const PostDetail = ({ post, user }: PostDetailProps) => {
       <div className="leading-relaxed break-words whitespace-pre-wrap">
         {post.content}
       </div>
-
       {post.user.uid === user?.uid && (
        <div className="flex items-center justify-end space-x-1">
          <Link href={`/post/${post.uid}/edit`}>
